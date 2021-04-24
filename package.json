@@ -7,7 +7,8 @@
   "scripts": {
     "test": "npm run test",
     "start": "ts-node-dev --respawn --transpile-only index.ts",
-    "build": "tsc --project ./"
+    "build": "tsc --project ./",
+    "setup-db": "ts-node-dev --transpile-only database/migrations/setup-db.ts"
   },
   "repository": {
     "type": "git",
