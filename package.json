@@ -1,0 +1,32 @@
+{
+  "name": "hostfy",
+  "version": "0.0.1",
+  "description": "Hostfy Express API - A cloud based PMS",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "npm run test",
+    "start": "ts-node-dev --respawn --transpile-only index.ts",
+    "build": "tsc --project ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gprpaes/hostfy.git"
+  },
+  "author": "Guilherme Paes <guilherme.paes@protonmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gprpaes/hostfy/issues"
+  },
+  "homepage": "https://github.com/gprpaes/hostfy#readme",
+  "dependencies": {
+    "express": "*"
+  },
+  "devDependencies": {
+    "@types/express": "*",
+    "@types/node": "*",
+    "ts-node": "*",
+    "ts-node-dev": "*",
+    "typescript": "*"
+  }
+}
