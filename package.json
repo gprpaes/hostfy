@@ -20,11 +20,14 @@
   },
   "homepage": "https://github.com/gprpaes/hostfy#readme",
   "dependencies": {
-    "express": "*"
+    "dotenv": "*",
+    "express": "*",
+    "pg": "*"
   },
   "devDependencies": {
     "@types/express": "*",
     "@types/node": "*",
+    "@types/pg": "*",
     "ts-node": "*",
     "ts-node-dev": "*",
     "typescript": "*"
