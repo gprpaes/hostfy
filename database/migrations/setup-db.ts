@@ -9,11 +9,15 @@ try {
     APP_COMPONENTS.SETUP_DB,
     `Found ${dir.length} migration file(s)...`
   );
+  
   for (let file of dir) {
     Logger.info(APP_COMPONENTS.SETUP_DB, `Migrating ${file}...`);
     let sqlFile = fs.readFileSync(`${BASE_MIGRATION_PATH}/${file}`);
     query(sqlFile.toString(), [], (err, result) => {
-      if (err) throw err;
+      if (err) {
+        Logger.error(APP_COMPONENTS.SETUP_DB, `Error on ${file}`);
+        throw err;
+      }
       if (result)
         Logger.info(APP_COMPONENTS.SETUP_DB, `Successfully migrated ${file}..`);
     });
