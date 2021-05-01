@@ -21,5 +21,4 @@ const pool = new Pool({
 export const query = (
   text: string,
   params: Array<any>,
-  callback: PostgresCallback
-) => pool.query(text, params, callback);
+) => pool.query(text, params);

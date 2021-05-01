@@ -9,19 +9,24 @@ try {
     APP_COMPONENTS.SETUP_DB,
     `Found ${dir.length} migration file(s)...`
   );
-  
-  for (let file of dir) {
-    Logger.info(APP_COMPONENTS.SETUP_DB, `Migrating ${file}...`);
-    let sqlFile = fs.readFileSync(`${BASE_MIGRATION_PATH}/${file}`);
-    query(sqlFile.toString(), [], (err, result) => {
-      if (err) {
-        Logger.error(APP_COMPONENTS.SETUP_DB, `Error on ${file}`);
-        throw err;
-      }
-      if (result)
-        Logger.info(APP_COMPONENTS.SETUP_DB, `Successfully migrated ${file}..`);
-    });
-  }
+
+  (async () => {
+    for (let file of dir) {
+      Logger.info(APP_COMPONENTS.SETUP_DB, `Migrating ${file}...`);
+      let sqlFile = fs.readFileSync(`${BASE_MIGRATION_PATH}/${file}`);
+      await query(sqlFile.toString(), [])
+        .then(() =>
+          Logger.success(
+            APP_COMPONENTS.SETUP_DB,
+            `Successfully migrated ${file}..`
+          )
+        )
+        .catch((err) => {
+          Logger.error(APP_COMPONENTS.SETUP_DB, `Error on ${file}`);
+          throw err;
+        });
+    }
+  })();
 } catch (error) {
   Logger.error(APP_COMPONENTS.SETUP_DB, error);
 }

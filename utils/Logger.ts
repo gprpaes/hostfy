@@ -9,13 +9,21 @@ abstract class Logger {
     );
   }
 
-  public static info(component: string, message: string): void{
+  public static info(component: string, message: string): void {
     console.log(
-        ANSI_COLORS.blue,
-        `[INFO]: ${component} =>`,
-        ANSI_COLORS.default,
-        message
-      );
+      ANSI_COLORS.blue,
+      `[INFO]: ${component} =>`,
+      ANSI_COLORS.default,
+      message
+    );
+  }
+  public static success(component: string, message: string): void {
+    console.log(
+      ANSI_COLORS.green,
+      `[SUCCESS]: ${component} =>`,
+      ANSI_COLORS.default,
+      message
+    );
   }
 }
 
