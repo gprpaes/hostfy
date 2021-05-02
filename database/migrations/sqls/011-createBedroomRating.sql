@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS bedroom_rating(
 	  REFERENCES bedroom(id),
       CONSTRAINT fk_rating_id
       FOREIGN KEY(rating_id) 
-	  REFERENCES rating(id)
-      
+	  REFERENCES rating(id)     
 );
 COMMIT;
