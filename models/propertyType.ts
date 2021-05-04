@@ -5,13 +5,17 @@ export default class PropertyType {
     private id: string,
     private name: string,
     private description: string
-  ) {}
+  ) {
+    this.setId();
+    this.setName(name);
+    this.setDescription(description);
+  }
 
   public getId(): string {
     return this.id;
   }
 
-  public setId(id: string): void {
+  public setId(): void {
     this.id = uuidv4();
   }
 
