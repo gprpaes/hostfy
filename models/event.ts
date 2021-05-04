@@ -6,7 +6,12 @@ export default class Event {
     private type: string,
     private description: string,
     private reservationId: string
-  ) {}
+  ) {
+    this.setId();
+    this.setType(type);
+    this.setDescription(description);
+    this.setReservationId(reservationId);
+  }
 
   public getReservationId(): string {
     return this.reservationId;
