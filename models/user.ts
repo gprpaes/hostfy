@@ -91,7 +91,7 @@ export default class User extends Person {
   public getId(): string {
     return this.id;
   }
-  public setId() {
+  public setId(id?: string) {
     this.id = uuidv4();
   }
 

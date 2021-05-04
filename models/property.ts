@@ -22,8 +22,9 @@ export default class Property {
     this.address = value;
   }
 
-  public setId(): void {
-    this.id = uuidv4();
+  public setId(id?: string): void {
+    if(!id) this.id = uuidv4();
+    else this.id = id
   }
 
   public getId(): string {

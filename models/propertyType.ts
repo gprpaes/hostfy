@@ -15,8 +15,9 @@ export default class PropertyType {
     return this.id;
   }
 
-  public setId(): void {
-    this.id = uuidv4();
+  public setId(id?: string): void {
+    if(!id) this.id = uuidv4();
+    else this.id = id;
   }
 
   public getName(): string {

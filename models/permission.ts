@@ -1,60 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
 export default class Permission {
-  public getCanEditGuest(): boolean {
-      return this.canEditGuest;
-  }
-  public setCanEditGuest(value: boolean) {
-      this.canEditGuest = value;
-  }
-  public getCanViewGuest(): boolean {
-      return this.canViewGuest;
-  }
-  public setCanViewGuest(value: boolean) {
-      this.canViewGuest = value;
-  }
-  public getCanEditReport(): boolean {
-      return this.canEditReport;
-  }
-  public setCanEditReport(value: boolean) {
-      this.canEditReport = value;
-  }
-  public getCanViewReport(): boolean {
-      return this.canViewReport;
-  }
-  public setCanViewReport(value: boolean) {
-      this.canViewReport = value;
-  }
-  public getCanEditFinacial(): boolean {
-      return this.canEditFinacial;
-  }
-  public setCanEditFinacial(value: boolean) {
-      this.canEditFinacial = value;
-  }
-  public getCanViewFinancial(): boolean {
-      return this.canViewFinancial;
-  }
-  public setCanViewFinancial(value: boolean) {
-      this.canViewFinancial = value;
-  }
-  public getDescription(): string {
-      return this.description;
-  }
-  public setDescription(value: string) {
-      this.description = value;
-  }
-  public getName(): string {
-      return this.name;
-  }
-  public setName(value: string) {
-      this.name = value;
-  }
-  public getId(): string {
-      return this.id;
-  }
-  public setId() {
-      this.id = uuidv4();
-  }
   constructor(
     private id: string,
     private name: string,
@@ -65,10 +11,72 @@ export default class Permission {
     private canEditReport: boolean,
     private canViewGuest: boolean,
     private canEditGuest: boolean
-  ){
-
+  ) {
+    this.setId();
+    this.setName(name);
+    this.setDescription(description);
+    this.setCanViewFinancial(canViewFinancial);
+    this.setCanEditFinacial(canEditFinacial);
+    this.setCanViewReport(canViewReport);
+    this.setCanEditReport(canEditReport);
+    this.setCanViewGuest(canViewGuest);
+    this.setCanEditGuest(canEditGuest);
   }
 
-
-
+  public getCanEditGuest(): boolean {
+    return this.canEditGuest;
+  }
+  public setCanEditGuest(value: boolean) {
+    this.canEditGuest = value;
+  }
+  public getCanViewGuest(): boolean {
+    return this.canViewGuest;
+  }
+  public setCanViewGuest(value: boolean) {
+    this.canViewGuest = value;
+  }
+  public getCanEditReport(): boolean {
+    return this.canEditReport;
+  }
+  public setCanEditReport(value: boolean) {
+    this.canEditReport = value;
+  }
+  public getCanViewReport(): boolean {
+    return this.canViewReport;
+  }
+  public setCanViewReport(value: boolean) {
+    this.canViewReport = value;
+  }
+  public getCanEditFinacial(): boolean {
+    return this.canEditFinacial;
+  }
+  public setCanEditFinacial(value: boolean) {
+    this.canEditFinacial = value;
+  }
+  public getCanViewFinancial(): boolean {
+    return this.canViewFinancial;
+  }
+  public setCanViewFinancial(value: boolean) {
+    this.canViewFinancial = value;
+  }
+  public getDescription(): string {
+    return this.description;
+  }
+  public setDescription(value: string) {
+    this.description = value;
+  }
+  public getName(): string {
+    return this.name;
+  }
+  public setName(value: string) {
+    this.name = value;
+  }
+  public getId(): string {
+    return this.id;
+  }
+  public setId(id?: string) {
+    if(!id) this.id = uuidv4();
+    else this.id = id
+    
+  }
 }
