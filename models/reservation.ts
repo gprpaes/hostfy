@@ -1,6 +1,28 @@
 import { v4 as uuidv4 } from "uuid";
 
 export default class Reservation {
+  constructor(
+    private id: string,
+    private bedroomId: string,
+    private guestAmount: number,
+    private startDate: number,
+    private endDate: number,
+    private totalValue: number,
+    private reservationDate: number,
+    private checkIn: boolean,
+    private checkOut: boolean
+  ) {
+    this.setId();
+    this.setBedroomId(bedroomId);
+    this.setGuestAmount(guestAmount);
+    this.setStartDate(startDate);
+    this.setEndDate(endDate);
+    this.setTotalValue(totalValue);
+    this.setReservationDate(reservationDate);
+    this.setCheckIn(checkIn);
+    this.setCheckOut(checkOut);
+  }
+
   public getCheckOut(): boolean {
     return this.checkOut;
   }
@@ -56,15 +78,4 @@ export default class Reservation {
     if (!value) this.id = uuidv4();
     else this.id = value;
   }
-  constructor(
-    private id: string,
-    private bedroomId: string,
-    private guestAmount: number,
-    private startDate: number,
-    private endDate: number,
-    private totalValue: number,
-    private reservationDate: number,
-    private checkIn: boolean,
-    private checkOut: boolean
-  ) {}
 }
