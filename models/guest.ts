@@ -27,7 +27,7 @@ export default class Guest extends Person {
   }
 
   public getReservationId(): string {
-    return this.id;
+    return this.reservationId;
   }
 
   public setReservationId(reservationId: string): void {
