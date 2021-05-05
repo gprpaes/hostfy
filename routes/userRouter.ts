@@ -2,17 +2,32 @@ import express from "express";
 import { REST_RESOURCES, APP_COMPONENTS } from "../const";
 import User from "../models/user";
 import { query } from "../database/connection";
-import Logger from "../utils/Logger"
+import Logger from "../utils/Logger";
 
 const userRouter = express.Router();
 
-userRouter.get(REST_RESOURCES.USER, (req, res) => {
+userRouter.get(REST_RESOURCES.USER, async (req, res) => {
+  Logger.info(APP_COMPONENTS.ENDPOINT, "Listing users...");
+  try {
+    const resq = await query("SELECT * FROM app_user", []);
+    Logger.success(APP_COMPONENTS.ENDPOINT, "Success listing users");
+    res.status(200);
+    return res.json({
+        success: true,
+        data: resq.rows
+    });
+  } catch (error) {
+    res.status(500);
+    return res.json({
+      error: error.toString(),
+    });
+  }
   res.status(200);
   return res.json({ foi: "ae" });
 });
 
 userRouter.post(REST_RESOURCES.USER, async (req, res) => {
-  Logger.info(APP_COMPONENTS.ENDPOINT, "Trying to create a new user...")
+  Logger.info(APP_COMPONENTS.ENDPOINT, "Trying to create a new user...");
   const {
     username,
     password,
@@ -71,14 +86,14 @@ userRouter.post(REST_RESOURCES.USER, async (req, res) => {
         user.getPropertyId(),
       ]
     );
-    Logger.success(APP_COMPONENTS.ENDPOINT, "created a new user!")
+    Logger.success(APP_COMPONENTS.ENDPOINT, "created a new user!");
     res.status(201);
     return res.json({
       success: true,
       data: resq.rows[0],
     });
   } catch (error) {
-    Logger.info(APP_COMPONENTS.ENDPOINT, "error on creating user")
+    Logger.info(APP_COMPONENTS.ENDPOINT, "error on creating user");
     res.status(400);
     return res.json({
       error: error.toString(),
