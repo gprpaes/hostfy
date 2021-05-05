@@ -6,15 +6,14 @@ import Logger from "../utils/Logger";
 
 const userRouter = express.Router();
 
-userRouter.get(REST_RESOURCES.USER, async (req, res) => {
-  Logger.info(APP_COMPONENTS.ENDPOINT, "Listing users...");
-  try {
-    const resq = await query("SELECT * FROM app_user", []);
-    Logger.success(APP_COMPONENTS.ENDPOINT, "Success listing users");
-    res.status(200);
+userRouter.get(`${REST_RESOURCES.USER}/:id`, async (req, res) => {
+  const { id } = req.params;
+  Logger.info(APP_COMPONENTS.ENDPOINT, "Listing a user given an id...");
+  try { 
+    const resq = await query(`SELECT * FROM app_user WHERE id = $1`, [id]);
     return res.json({
-        success: true,
-        data: resq.rows
+      success: true,
+      data: resq.rows,
     });
   } catch (error) {
     res.status(500);
@@ -22,8 +21,23 @@ userRouter.get(REST_RESOURCES.USER, async (req, res) => {
       error: error.toString(),
     });
   }
-  res.status(200);
-  return res.json({ foi: "ae" });
+});
+userRouter.get(REST_RESOURCES.USER, async (req, res) => {
+  Logger.info(APP_COMPONENTS.ENDPOINT, "Listing users...");
+  try {
+    const resq = await query("SELECT * FROM app_user", []);
+    Logger.success(APP_COMPONENTS.ENDPOINT, "Success listing users");
+    res.status(200);
+    return res.json({
+      success: true,
+      data: resq.rows,
+    });
+  } catch (error) {
+    res.status(500);
+    return res.json({
+      error: error.toString(),
+    });
+  }
 });
 
 userRouter.post(REST_RESOURCES.USER, async (req, res) => {
