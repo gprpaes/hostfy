@@ -7,6 +7,7 @@ export const ANSI_COLORS = {
 
 export const APP_COMPONENTS = {
   SETUP_DB: "Setup DB",
+  ENDPOINT: "ENDPOINTS"
 };
 
 export const REST_RESOURCES = {
