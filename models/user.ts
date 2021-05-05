@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export default class User extends Person {
   constructor(
-    private id: string,
+    private id: string | null,
     private username: string,
     private password: string,
     private propertyId: string,
