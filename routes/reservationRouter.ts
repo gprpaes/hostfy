@@ -24,5 +24,22 @@ reservationRouter.get(`${REST_RESOURCES.RESERVATION}`, async (req, res) => {
     }
   });
 
+  reservationRouter.get(`${REST_RESOURCES.RESERVATION}/:id`, async (req, res) => {
+    const { id } = req.params;
+    Logger.info(APP_COMPONENTS.ENDPOINT, "Listing a RESERVATION given an id...");
+    try {
+      const resq = await query(`SELECT * FROM reservation WHERE id = $1`, [id]);
+      return res.json({
+        success: true,
+        data: resq.rows,
+      });
+    } catch (error) {
+      res.status(500);
+      return res.json({
+        error: error.toString(),
+      });
+    }
+  });
+
 
 export default reservationRouter;
