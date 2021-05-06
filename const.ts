@@ -12,7 +12,8 @@ export const APP_COMPONENTS = {
 
 export const REST_RESOURCES = {
   USER: "/user",
-  PROPERTY: "/property"
+  PROPERTY: "/property",
+  RESERVATION: "/reservation"
 };
 
 export const BASE_MIGRATION_PATH = "database/migrations/sqls";
