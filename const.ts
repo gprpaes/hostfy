@@ -13,7 +13,8 @@ export const APP_COMPONENTS = {
 export const REST_RESOURCES = {
   USER: "/user",
   PROPERTY: "/property",
-  RESERVATION: "/reservation"
+  RESERVATION: "/reservation",
+  BEDROOM: "/bedroom"
 };
 
 export const BASE_MIGRATION_PATH = "database/migrations/sqls";

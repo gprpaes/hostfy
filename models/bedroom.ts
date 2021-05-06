@@ -2,14 +2,14 @@ import { v4 as uuidv4 } from "uuid";
 
 export default class Bedroom {
   constructor(
-    private id: string,
-    private number: string,
-    private type: string,
-    private bedType: string,
-    private capacity: number,
-    private status: string,
-    private propertyId: string,
-    private booked: boolean
+    private id: string | null,
+    private number: string | null,
+    private type: string | null,
+    private bedType: string | null,
+    private capacity: number | null,
+    private status: string | null,
+    private propertyId: string | null,
+    private booked: boolean | null
   ) {
     this.setId();
     this.setNumber(number);
