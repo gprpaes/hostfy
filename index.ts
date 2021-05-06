@@ -1,5 +1,6 @@
 import express from "express";
 import userRouter from "./routes/userRouter";
+import propertyRouter from "./routes/propertyRouter"
 import bp from "body-parser";
 import cors from 'cors';
 
@@ -9,6 +10,7 @@ const PORT = 8000;
 app.use(bp.json());
 app.use(cors());
 app.use(bp.urlencoded({ extended: true }));
+app.use(propertyRouter);
 app.use(userRouter);
 
 app.get("/", (req, res) => res.send("Hostfy API"));
