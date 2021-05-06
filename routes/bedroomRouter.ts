@@ -25,6 +25,24 @@ bedroomRouter.get(`${REST_RESOURCES.BEDROOM}`, async (req, res) => {
       });
     }
   });
+
+
+bedroomRouter.get(`${REST_RESOURCES.BEDROOM}/:id`, async (req, res) => {
+    const { id } = req.params;
+    Logger.info(APP_COMPONENTS.ENDPOINT, "Listing a BEDROOM given an id...");
+    try {
+      const resq = await query(`SELECT * FROM bedroom WHERE id = $1`, [id]);
+      return res.json({
+        success: true,
+        data: resq.rows,
+      });
+    } catch (error) {
+      res.status(500);
+      return res.json({
+        error: error.toString(),
+      });
+    }
+  });
   
 
 
