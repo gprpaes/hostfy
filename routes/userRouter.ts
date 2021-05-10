@@ -13,7 +13,7 @@ userRouter.get(`${REST_RESOURCES.USER}/:id`, async (req, res) => {
     const resq = await query(`SELECT * FROM app_user WHERE id = $1`, [id]);
     return res.json({
       success: true,
-      data: resq.rows,
+      data: resq.rows[0],
     });
   } catch (error) {
     res.status(500);
@@ -25,15 +25,17 @@ userRouter.get(`${REST_RESOURCES.USER}/:id`, async (req, res) => {
 
 userRouter.get(`/login`, async (req, res) => {
   const { email, password } = req.query;
+
   Logger.info(APP_COMPONENTS.ENDPOINT, "Trying to Login");
   try {
     const resq = await query(
       "SELECT * from app_user WHERE email = $1 and password = $2",
       [email, password]
     );
+
     return res.json({
       success: true,
-      data: resq.rows[0],
+      data: resq.rows,
     });
   } catch (error) {
     res.status(403);
